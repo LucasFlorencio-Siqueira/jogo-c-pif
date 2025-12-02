@@ -25,5 +25,3 @@ CellState processarTiro(Player* atirador, Player* defensor, int row, int col);
 void alternarTurno(Game* game);
 
 #endif
-#endif
-
