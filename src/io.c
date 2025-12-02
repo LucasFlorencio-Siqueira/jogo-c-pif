@@ -14,15 +14,15 @@ void limparTela() {
 
 int menuPrincipal() {
     int opcao;
-    printf("\n=== BATALHA NAVAL ===\n");
+    printf("\n BATALHA NAVAL \n");
     printf("1. Novo Jogo\n");
     printf("2. Configuracoes\n");
     printf("3. Sair\n");
     printf("Escolha: ");
     
-    // Pequena correcao para evitar loop infinito se digitar letra
+  
     if (scanf("%d", &opcao) != 1) {
-        while(getchar() != '\n'); // Limpa buffer
+        while(getchar() != '\n'); 
         return 0;
     }
     return opcao;
