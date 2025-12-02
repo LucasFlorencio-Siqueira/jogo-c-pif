@@ -19,7 +19,12 @@ int menuPrincipal() {
     printf("2. Configuracoes\n");
     printf("3. Sair\n");
     printf("Escolha: ");
-    scanf("%d", &opcao);
+    
+    // Pequena correcao para evitar loop infinito se digitar letra
+    if (scanf("%d", &opcao) != 1) {
+        while(getchar() != '\n'); // Limpa buffer
+        return 0;
+    }
     return opcao;
 }
 
@@ -111,4 +116,3 @@ void mostrarVencedor(Player* vencedor) {
     printf("\n*** FIM DE JOGO ***\n");
     printf("O vencedor foi: %s\n", vencedor->nickname);
 }
-
