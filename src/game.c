@@ -4,6 +4,9 @@
 #include <string.h>
 #include <stdio.h>
 
+int validarPosicao(Board* board, int row, int col, int len, Orientation orient);
+void preencherPosicao(Board* board, int row, int col, int len, Orientation orient, int shipId);
+
 void inicializarJogador(Player* p, char* nome, int rows, int cols) {
     strcpy(p->nickname, nome);
     inicializarTabuleiro(&p->board, rows, cols);
@@ -72,6 +75,7 @@ void posicionarFrotaAuto(Player* p) {
         while (!placed) {
             int r = gerarNumero(0, p->board.rows - 1);
             int c = gerarNumero(0, p->board.cols - 1);
+            // Sorteia 0 ou 1. Se 0 -> Horizontal, Se 1 -> Vertical
             Orientation o = (gerarNumero(0, 1) == 0) ? ORIENT_H : ORIENT_V;
 
             if (validarPosicao(&p->board, r, c, s->length, o)) {
