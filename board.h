@@ -1,28 +1,22 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-typedef enum {
-    AGUA,
-    NAVIO,
-    ACERTO,
-    ERRO
-} EstadoCelula;
+typedef enum { CELL_WATER, CELL_SHIP, CELL_HIT, CELL_MISS } CellState;
 
 typedef struct {
-    EstadoCelula estado;
-    int idNavio;
-} Celula;
+    CellState state;
+    int ship_id;
+} Cell;
 
 typedef struct {
-    int linhas;
-    int colunas;
-    Celula *celulas;
-} Tabuleiro;
+    int rows, cols;
+    Cell *cells;
+} Board;
 
-Tabuleiro* criarTabuleiro(int linhas, int colunas);
-void destruirTabuleiro(Tabuleiro* tabuleiro);
-void limparTabuleiro(Tabuleiro* tabuleiro);
-Celula* pegarCelula(Tabuleiro* tabuleiro, int linha, int coluna);
-int coordenadaValida(Tabuleiro* tabuleiro, int linha, int coluna);
+void inicializarTabuleiro(Board* board, int rows, int cols);
+void liberarTabuleiro(Board* board);
+void limparTabuleiro(Board* board);
+Cell* pegarCelula(Board* board, int row, int col);
+int coordenadaValida(Board* board, int row, int col);
 
 #endif
