@@ -2,41 +2,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Tabuleiro* criarTabuleiro(int linhas, int colunas) {
-    Tabuleiro* t = (Tabuleiro*) malloc(sizeof(Tabuleiro));
-    t->linhas = linhas;
-    t->colunas = colunas;
-    t->celulas = (Celula*) malloc(linhas * colunas * sizeof(Celula));
-    limparTabuleiro(t);
-    return t;
+void inicializarTabuleiro(Board* board, int rows, int cols) {
+    board->rows = rows;
+    board->cols = cols;
+    board->cells = (Cell*) malloc(rows * cols * sizeof(Cell));
+    limparTabuleiro(board);
 }
 
-void destruirTabuleiro(Tabuleiro* tabuleiro) {
-    if (tabuleiro != NULL) {
-        free(tabuleiro->celulas);
-        free(tabuleiro);
+void liberarTabuleiro(Board* board) {
+    if (board->cells != NULL) {
+        free(board->cells);
     }
 }
 
-void limparTabuleiro(Tabuleiro* tabuleiro) {
-    int total = tabuleiro->linhas * tabuleiro->colunas;
+void limparTabuleiro(Board* board) {
+    int total = board->rows * board->cols;
     for (int i = 0; i < total; i++) {
-        tabuleiro->celulas[i].estado = AGUA;
-        tabuleiro->celulas[i].idNavio = -1;
+        board->cells[i].state = CELL_WATER;
+        board->cells[i].ship_id = -1;
     }
 }
 
-Celula* pegarCelula(Tabuleiro* tabuleiro, int linha, int coluna) {
-    if (!coordenadaValida(tabuleiro, linha, coluna)) {
+Cell* pegarCelula(Board* board, int row, int col) {
+    if (!coordenadaValida(board, row, col)) {
         return NULL;
     }
-    int indice = (linha * tabuleiro->colunas) + coluna;
-    return &tabuleiro->celulas[indice];
+    int index = (row * board->cols) + col;
+    return &board->cells[index];
 }
 
-int coordenadaValida(Tabuleiro* tabuleiro, int linha, int coluna) {
-    if (linha >= 0 && linha < tabuleiro->linhas && coluna >= 0 && coluna < tabuleiro->colunas) {
-        return 1;
-    }
-    return 0;
+int coordenadaValida(Board* board, int row, int col) {
+    return (row >= 0 && row < board->rows && col >= 0 && col < board->cols);
 }
