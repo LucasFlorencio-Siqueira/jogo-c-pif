@@ -1,26 +1,23 @@
 #ifndef FLEET_H
 #define FLEET_H
 
-typedef enum {
-    HORIZONTAL,
-    VERTICAL
-} Orientacao;
+typedef enum { ORIENT_H, ORIENT_V } Orientation;
 
 typedef struct {
-    char nome[20];
-    int tamanho;
-    int acertos;
-    int posicionado;
-} Navio;
+    char name[20];
+    int length;
+    int hits;
+    int placed;
+} Ship;
 
 typedef struct {
-    Navio *listaNavios;
-    int quantidade;
-} Frota;
+    Ship *ships;
+    int count;
+} Fleet;
 
-Frota criarFrota();
-void destruirFrota(Frota* frota);
-Navio* pegarNavio(Frota* frota, int id);
-int verificarFrotaDestruida(Frota* frota);
+void inicializarFrota(Fleet* fleet);
+void liberarFrota(Fleet* fleet);
+Ship* pegarNavio(Fleet* fleet, int id);
+int verificarFrotaDestruida(Fleet* fleet);
 
 #endif
