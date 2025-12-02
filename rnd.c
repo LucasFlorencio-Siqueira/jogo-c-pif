@@ -9,4 +9,3 @@ void iniciarAleatorio() {
 int gerarNumero(int min, int max) {
     return min + rand() % (max - min + 1);
 }
-
