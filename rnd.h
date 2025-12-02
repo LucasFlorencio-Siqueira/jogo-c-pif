@@ -1,5 +1,5 @@
-#ifndef ALEATORIO_H
-#define ALEATORIO_H
+#ifndef RND_H
+#define RND_H
 
 void iniciarAleatorio();
 int gerarNumero(int min, int max);
