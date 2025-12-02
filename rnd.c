@@ -1,4 +1,4 @@
-#include "aleatorio.h"
+#include "rnd.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -9,3 +9,4 @@ void iniciarAleatorio() {
 int gerarNumero(int min, int max) {
     return min + rand() % (max - min + 1);
 }
+
